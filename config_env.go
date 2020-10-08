@@ -1,6 +1,7 @@
 package config
 
 import (
+	"fmt"
 	"os"
 	"strconv"
 
@@ -14,6 +15,15 @@ type envConfig struct {
 // Load configurations
 func (c *envConfig) Load() bool {
 	if godotenv.Overload(c.Files...) != nil {
+		return false
+	}
+	return true
+}
+
+// Set configuration
+// return false if driver not support set or error happend
+func (c *envConfig) Set(key string, value interface{}) bool {
+	if os.Setenv(key, fmt.Sprintf("%v", value)) != nil {
 		return false
 	}
 	return true

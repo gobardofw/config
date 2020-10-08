@@ -9,8 +9,8 @@ func NewEnvConfig(filenames ...string) (Config, bool) {
 	return nil, false
 }
 
-// NewJsonConfig create a new json file configuration manager instance
-func NewJsonConfig(filenames ...string) (Config, bool) {
+// NewJSONConfig create a new json file configuration manager instance
+func NewJSONConfig(filenames ...string) (Config, bool) {
 	jc := &jsonConfig{Files: filenames}
 	if jc.Load() {
 		return jc, true

@@ -4,6 +4,10 @@ package config
 type Config interface {
 	// Load configurations
 	Load() bool
+	// Set configuration
+	// return false if driver not support set or error happend
+	// set override local configuration
+	Set(key string, value interface{}) bool
 	// Get configuration
 	// return nil, false if value not exists
 	Get(key string) (interface{}, bool)

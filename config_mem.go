@@ -11,9 +11,11 @@ func (c *memoryConfig) Load() bool {
 	return true
 }
 
-// Add register new config to memory
-func (c *memoryConfig) Add(key string, val interface{}) {
-	c.data[key] = val
+// Set configuration
+// return false if driver not support set or error happend
+func (c *memoryConfig) Set(key string, value interface{}) bool {
+	c.data[key] = value
+	return true
 }
 
 // Get configuration
