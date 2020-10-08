@@ -28,7 +28,9 @@ func (c *jsonConfig) fetch(key string) (interface{}, bool, bool) {
 
 // Load configurations
 func (c *jsonConfig) Load() bool {
-	c.data = make(map[string]interface{})
+	if c.data == nil {
+		c.data = make(map[string]interface{})
+	}
 	contents := make([]string, 0)
 	for _, f := range c.Files {
 		bytes, err := ioutil.ReadFile(f)

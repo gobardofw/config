@@ -7,7 +7,9 @@ type memoryConfig struct {
 // Load configurations
 func (c *memoryConfig) Load() bool {
 	// Load do nothing for memory config
-	c.data = make(map[string]interface{})
+	if c.data == nil {
+		c.data = make(map[string]interface{})
+	}
 	return true
 }
 
