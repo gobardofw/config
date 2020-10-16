@@ -71,13 +71,13 @@ func (c *jsonConfig) Set(key string, value interface{}) bool {
 }
 
 // Get configuration
-func (c *jsonConfig) Get(key string) (interface{}, bool) {
+func (c *jsonConfig) Get(key string) interface{} {
 	if v, isJSON, exists := c.fetch(key); !exists {
-		return nil, false
+		return nil
 	} else if isJSON {
-		return v.(gjson.Result).Value(), true
+		return v.(gjson.Result).Value()
 	} else {
-		return v, true
+		return v
 	}
 }
 
@@ -88,239 +88,239 @@ func (c *jsonConfig) Exists(key string) bool {
 }
 
 // Bool parse dependency as boolean
-func (c *jsonConfig) Bool(key string, fallback bool) (bool, bool) {
+func (c *jsonConfig) Bool(key string, fallback bool) bool {
 	if v, isJSON, exists := c.fetch(key); exists {
 		if isJSON {
 			val := v.(gjson.Result)
 			if val.Type == gjson.False || val.Type == gjson.True {
-				return val.Bool(), true
+				return val.Bool()
 			}
 		} else {
 			if val, ok := v.(bool); ok {
-				return val, true
+				return val
 			}
 		}
 	}
-	return fallback, false
+	return fallback
 }
 
 // Int parse dependency as int
-func (c *jsonConfig) Int(key string, fallback int) (int, bool) {
+func (c *jsonConfig) Int(key string, fallback int) int {
 	if v, isJSON, exists := c.fetch(key); exists {
 		if isJSON {
 			val := v.(gjson.Result)
 			if val.Type == gjson.Number {
-				return int(val.Int()), true
+				return int(val.Int())
 			}
 		} else {
 			if val, ok := v.(int); ok {
-				return val, true
+				return val
 			}
 		}
 	}
-	return fallback, false
+	return fallback
 }
 
 // Int8 parse dependency as int8
-func (c *jsonConfig) Int8(key string, fallback int8) (int8, bool) {
+func (c *jsonConfig) Int8(key string, fallback int8) int8 {
 	if v, isJSON, exists := c.fetch(key); exists {
 		if isJSON {
 			val := v.(gjson.Result)
 			if val.Type == gjson.Number {
-				return int8(val.Int()), true
+				return int8(val.Int())
 			}
 		} else {
 			if val, ok := v.(int8); ok {
-				return val, true
+				return val
 			}
 		}
 	}
-	return fallback, false
+	return fallback
 }
 
 // Int16 parse dependency as int16
-func (c *jsonConfig) Int16(key string, fallback int16) (int16, bool) {
+func (c *jsonConfig) Int16(key string, fallback int16) int16 {
 	if v, isJSON, exists := c.fetch(key); exists {
 		if isJSON {
 			val := v.(gjson.Result)
 			if val.Type == gjson.Number {
-				return int16(val.Int()), true
+				return int16(val.Int())
 			}
 		} else {
 			if val, ok := v.(int16); ok {
-				return val, true
+				return val
 			}
 		}
 	}
-	return fallback, false
+	return fallback
 }
 
 // Int32 parse dependency as int32
-func (c *jsonConfig) Int32(key string, fallback int32) (int32, bool) {
+func (c *jsonConfig) Int32(key string, fallback int32) int32 {
 	if v, isJSON, exists := c.fetch(key); exists {
 		if isJSON {
 			val := v.(gjson.Result)
 			if val.Type == gjson.Number {
-				return int32(val.Int()), true
+				return int32(val.Int())
 			}
 		} else {
 			if val, ok := v.(int32); ok {
-				return val, true
+				return val
 			}
 		}
 	}
-	return fallback, false
+	return fallback
 }
 
 // Int64 parse dependency as int64
-func (c *jsonConfig) Int64(key string, fallback int64) (int64, bool) {
+func (c *jsonConfig) Int64(key string, fallback int64) int64 {
 	if v, isJSON, exists := c.fetch(key); exists {
 		if isJSON {
 			val := v.(gjson.Result)
 			if val.Type == gjson.Number {
-				return int64(val.Int()), true
+				return int64(val.Int())
 			}
 		} else {
 			if val, ok := v.(int64); ok {
-				return val, true
+				return val
 			}
 		}
 	}
-	return fallback, false
+	return fallback
 }
 
 // UInt parse dependency as uint
-func (c *jsonConfig) UInt(key string, fallback uint) (uint, bool) {
+func (c *jsonConfig) UInt(key string, fallback uint) uint {
 	if v, isJSON, exists := c.fetch(key); exists {
 		if isJSON {
 			val := v.(gjson.Result)
 			if val.Type == gjson.Number {
-				return uint(val.Uint()), true
+				return uint(val.Uint())
 			}
 		} else {
 			if val, ok := v.(uint); ok {
-				return val, true
+				return val
 			}
 		}
 	}
-	return fallback, false
+	return fallback
 }
 
 // UInt8 parse dependency as uint8
-func (c *jsonConfig) UInt8(key string, fallback uint8) (uint8, bool) {
+func (c *jsonConfig) UInt8(key string, fallback uint8) uint8 {
 	if v, isJSON, exists := c.fetch(key); exists {
 		if isJSON {
 			val := v.(gjson.Result)
 			if val.Type == gjson.Number {
-				return uint8(val.Uint()), true
+				return uint8(val.Uint())
 			}
 		} else {
 			if val, ok := v.(uint8); ok {
-				return val, true
+				return val
 			}
 		}
 	}
-	return fallback, false
+	return fallback
 }
 
 // UInt16 parse dependency as uint16
-func (c *jsonConfig) UInt16(key string, fallback uint16) (uint16, bool) {
+func (c *jsonConfig) UInt16(key string, fallback uint16) uint16 {
 	if v, isJSON, exists := c.fetch(key); exists {
 		if isJSON {
 			val := v.(gjson.Result)
 			if val.Type == gjson.Number {
-				return uint16(val.Uint()), true
+				return uint16(val.Uint())
 			}
 		} else {
 			if val, ok := v.(uint16); ok {
-				return val, true
+				return val
 			}
 		}
 	}
-	return fallback, false
+	return fallback
 }
 
 // UInt32 parse dependency as uint32
-func (c *jsonConfig) UInt32(key string, fallback uint32) (uint32, bool) {
+func (c *jsonConfig) UInt32(key string, fallback uint32) uint32 {
 	if v, isJSON, exists := c.fetch(key); exists {
 		if isJSON {
 			val := v.(gjson.Result)
 			if val.Type == gjson.Number {
-				return uint32(val.Uint()), true
+				return uint32(val.Uint())
 			}
 		} else {
 			if val, ok := v.(uint32); ok {
-				return val, true
+				return val
 			}
 		}
 	}
-	return fallback, false
+	return fallback
 }
 
 // UInt64 parse dependency as uint64
-func (c *jsonConfig) UInt64(key string, fallback uint64) (uint64, bool) {
+func (c *jsonConfig) UInt64(key string, fallback uint64) uint64 {
 	if v, isJSON, exists := c.fetch(key); exists {
 		if isJSON {
 			val := v.(gjson.Result)
 			if val.Type == gjson.Number {
-				return uint64(val.Uint()), true
+				return uint64(val.Uint())
 			}
 		} else {
 			if val, ok := v.(uint64); ok {
-				return val, true
+				return val
 			}
 		}
 	}
-	return fallback, false
+	return fallback
 }
 
 // Float32 parse dependency as float64
-func (c *jsonConfig) Float32(key string, fallback float32) (float32, bool) {
+func (c *jsonConfig) Float32(key string, fallback float32) float32 {
 	if v, isJSON, exists := c.fetch(key); exists {
 		if isJSON {
 			val := v.(gjson.Result)
 			if val.Type == gjson.Number {
-				return float32(val.Float()), true
+				return float32(val.Float())
 			}
 		} else {
 			if val, ok := v.(float32); ok {
-				return val, true
+				return val
 			}
 		}
 	}
-	return fallback, false
+	return fallback
 }
 
 // Float64 parse dependency as float64
-func (c *jsonConfig) Float64(key string, fallback float64) (float64, bool) {
+func (c *jsonConfig) Float64(key string, fallback float64) float64 {
 	if v, isJSON, exists := c.fetch(key); exists {
 		if isJSON {
 			val := v.(gjson.Result)
 			if val.Type == gjson.Number {
-				return val.Float(), true
+				return val.Float()
 			}
 		} else {
 			if val, ok := v.(float64); ok {
-				return val, true
+				return val
 			}
 		}
 	}
-	return fallback, false
+	return fallback
 }
 
 // String parse dependency as string
-func (c *jsonConfig) String(key string, fallback string) (string, bool) {
+func (c *jsonConfig) String(key string, fallback string) string {
 	if v, isJSON, exists := c.fetch(key); exists {
 		if isJSON {
 			val := v.(gjson.Result)
 			if val.Type == gjson.String {
-				return val.String(), true
+				return val.String()
 			}
 		} else {
 			if val, ok := v.(string); ok {
-				return val, true
+				return val
 			}
 		}
 	}
-	return fallback, false
+	return fallback
 }
